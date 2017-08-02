@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+    <title>弹窗</title>
+    <style type="text/css">
+        *{
+        	margin: 0px;
+        	padding: 0px;
+        }
+        #login{
+        	width: 400px;
+        	height: 150px;
+        	border: 1px gray solid;
+        	position: absolute;
+        }
+        #close{
+        	position: absolute;
+        	right: 5px;
+        	top: 5px;
+        }
+        p{
+        	margin-top: 20px;
+        	text-align: center;
+        }
+    </style>
+</head>
+<body style="height:2000px">
+    <input type="button" value="点击" id="input1"/>
+    <!-- <div id="login">
+    	<p id="userName">用户名：<input type="text"/></p>
+    	<p id="passWord">密码：<input type="text"/></p>
+    	<input type="button" value="X" id="close">
+    </div> -->
+    <script type="text/javascript">
+     $(function(){
+     	//给按钮添加一个点击事件
+         $('#input1').click(function(){
+         	//动态创建弹框
+         	var oLogin = $('<div id="login"><p id="userName">用户名：<input type="text"/></p><p id="passWord">密码：<input type="text"/></p><input type="button" value="X" id="close"></div>');
+         	//添加到页面中
+         	$('body').append(oLogin);
+
+         	//设置弹框的位置：居中
+         	oLogin.css('left', ($(window).width() - oLogin.outerWidth())/2);
+         	oLogin.css('top',($(window).height() - oLogin.outerHeight())/2);
+
+         	//给页面添加滚动事件
+         	$(window).on('resize scroll',function(){
+         		oLogin.css('left', ($(window).width() - oLogin.outerWidth())/2);
+         	    oLogin.css('top',($(window).height() - oLogin.outerHeight())/2 + $(window).scrollTop());
+
+         	});
+         	//给关闭按钮添加点击事件
+            $('#close').click(function(){
+         	    oLogin.remove();
+            });
+         });
+     });
+   </script>   
+</body>
+</html>

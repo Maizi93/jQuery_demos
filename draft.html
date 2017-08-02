@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+    <title>拖拽——jQuery</title>
+    <style type="text/css">
+        div{
+        	width: 100px;
+        	height: 100px;
+        	background-color: red;
+        	position: absolute;
+        }
+    </style>
+</head>
+<body>
+   <div></div> 
+   <script type="text/javascript">
+       $(function(){
+        
+         //设置两个变量
+         var disX = 0;
+         var disY = 0;
+
+         //给div添加鼠标按下事件
+         $('div').mousedown(function(event){
+             //获取鼠标距离方块左边和上边的距离
+             disX = event.pageX - $(this).offset().left;
+             disY = event.pageY - $(this).offset().top; 
+
+             //给document添加鼠标移动事件
+             $(document).mousemove(function(event){
+                 //更新div的位置
+                 $('div').css('left', event.pageX - disX);
+                 $('div').css('top', event.pageY - disY);
+             });
+             
+             //鼠标抬起的时候，取消事件
+             $(document).mouseup(function(){
+                 $(document).off();
+             });
+             //阻止冒泡事件和默认事件
+             return false;
+         });
+       });
+   </script>
+</body>
+</html>

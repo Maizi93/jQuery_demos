@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+    <title>选项卡——jQuery</title>
+    <style type="text/css">
+        #wrap div{
+          width: 400px;
+          height: 200px;
+          border: 1px gray solid;
+          display: none;
+        }
+        .choiced{
+          background-color: red;
+        }
+    </style>
+</head>
+<body>
+   <div id="wrap">
+    <input class="choiced" type="button" value="选项一">
+    <input type="button" value="选项二">
+    <input type="button" value="选项三">
+    <div style="display:block">岁月静好~</div>
+    <div>感恩！</div>
+    <div>感谢有你~</div>
+   </div>
+
+   <script type="text/javascript">
+       $(function(){
+        //给每个按钮添加点击事件
+        $('input').click(function(){
+          //先让所有的恢复
+          $('input').attr('class','');
+          $('#wrap').find('div').css('display','none');
+          //设置当前选中的
+          $(this).attr('class','choiced');
+          $('#wrap').find('div').eq($(this).index()).css('display','block');
+        });
+       });
+   </script>
+</body>
+</html>
